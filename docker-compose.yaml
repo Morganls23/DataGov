@@ -1,7 +1,6 @@
 version: "3"
-
 services:
-  pingdatagov-pap:
+ pingdatagov-pap:
     image: pricecs/pingdatagov-pap:8.0
     env_file:
       - ./env_vars
@@ -13,18 +12,17 @@ services:
     networks:
       - pingnet
 
-
-pap-config:
+ pap-config:
     image: postman/newman:latest
     command:
       run https://www.getpostman.com/collections/18d685d285ea7fb92886 --insecure
     networks:
-      - pingnet 
+      - pingnet
 
-pingdatagov:
+ pingdatagov:
     image: pingidentity/pingdatagovernance:edge
     command: wait-for pingdirectory:389 -t 300 -- entrypoint.sh start-server
-    environment:    
+    environment:
       # Adding the bits needed for Jokes API and PF Token Validation
       - SERVER_PROFILE_URL=https://github.com/cprice-ping/Profile-DataGov.git
       - SERVER_PROFILE_PATH=datagov
@@ -40,7 +38,7 @@ pingdatagov:
     networks:
       - pingnet
 
-pingfederate:
+ pingfederate:
     image: pingidentity/pingfederate:edge
     command: wait-for pingdirectory:389 -t 300 -- entrypoint.sh start-server
     environment:
@@ -65,7 +63,7 @@ pingfederate:
     networks:
       - pingnet
 
-pingdirectory:
+ pingdirectory:
     image: pingidentity/pingdirectory:edge
     environment:
       - SERVER_PROFILE_URL=https://github.com/cprice-ping/Profile-PD-Base.git
@@ -82,8 +80,8 @@ pingdirectory:
       - 1443:443
     networks:
       - pingnet
-                    
-  pingdataconsole:
+
+ pingdataconsole:
     image: pingidentity/pingdataconsole:edge
     environment:
       - SERVER_PROFILE_URL=https://github.com/cprice-ping/Profile-DataGov.git
