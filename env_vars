@@ -2,12 +2,12 @@
 PING_IDENTITY_ACCEPT_EULA=YES
 
 # PF Base URL \ SAML EntityID
-PF_BASE_URL=https://ext-docker.cpricedomain.ping-eng.com:9031
+PF_BASE_URL=https://localhost:9031
 
 # PF Logging Level
 PF_LOG_LEVEL=INFO
 
-# PD User Base DN 
+# PD User Base DN
 # Default for PD is `dc=example,dc=com`
 USER_BASE_DN=dc=example,dc=com
 
@@ -18,5 +18,5 @@ USER_ORG_BASE=example.com
 USER_BASE_DN=dc=example.com
 
 # PAP Variables
-PAP_HOST=int-docker.cpricelab.com
+PAP_HOST=localhost
 PAP_SECRET=2FederateM0re
